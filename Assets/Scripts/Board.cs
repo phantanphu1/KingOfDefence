@@ -52,6 +52,7 @@ public class Board : MonoBehaviour
             }
         }
 
+
         if (emptyCells.Count == 0)
         {
             Debug.Log("No empty cells available on the board!");
