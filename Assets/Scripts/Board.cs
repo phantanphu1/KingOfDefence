@@ -2,21 +2,35 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Board : MonoBehaviour
 {
+    public static Board Instance { get; private set; }
     public GameObject cellPrefab;
     public Transform board;
     private Cell[,] _matrix;
     private const int numRows = 3;
     private const int numCols = 5;
-    public List<GameObject> danhSachNhanVat;
+    private TableObjectManage tableObjectManage;
+    List<CharacterItem> lisCharacterItemLv1 = new List<CharacterItem>();
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+            return;
+        }
+        Instance = this;
+        tableObjectManage = TableObjectManage.Instance;
+
+    }
     void Start()
     {
         _matrix = new Cell[numRows + 1, numCols + 1];
         CreateBoard();
-
     }
 
     private void CreateBoard()
@@ -30,14 +44,12 @@ public class Board : MonoBehaviour
                 cell.row = i;
                 cell.col = j;
                 _matrix[i, j] = cell;
+                cellGameObject.SetActive(true);
             }
         }
     }
-    public void AddPlayer()
+    public Cell GetRandomEmptyCell()
     {
-
-        int randomPlayerIndex = UnityEngine.Random.Range(0, danhSachNhanVat.Count);
-        GameObject selectedNhanVatPrefab = danhSachNhanVat[randomPlayerIndex];
 
         List<Cell> emptyCells = new List<Cell>();
 
@@ -55,16 +67,55 @@ public class Board : MonoBehaviour
 
         if (emptyCells.Count == 0)
         {
-            Debug.Log("No empty cells available on the board!");
-            return;
+            return null;
         }
 
         int randomCellIndex = UnityEngine.Random.Range(0, emptyCells.Count);
-        Cell targetCell = emptyCells[randomCellIndex];
+        return emptyCells[randomCellIndex];
 
-        GameObject newNhanVat = Instantiate(selectedNhanVatPrefab, targetCell.transform);
-        // newNhanVat.transform.localPosition = Vector3.zero;
-        newNhanVat.transform.localPosition = new Vector3(0f, -45f, 0f);
+    }
+    public void SpawnRandomCharacter()
+    {
+        {
+            if (Board.Instance == null)
+            {
+                return;
+            }
+
+            Cell targetCell = Board.Instance.GetRandomEmptyCell();
+
+            if (targetCell == null)
+            {
+                return;
+            }
+            // láy random character trong list
+            foreach (var randomCharacterlevel1 in tableObjectManage.characterConfig.lsCharacterItem)
+            {
+                if (randomCharacterlevel1.baseLevel == 1)
+                {
+                    lisCharacterItemLv1.Add(randomCharacterlevel1);
+                }
+            }
+            int randomCharacterIndex = UnityEngine.Random.Range(0, lisCharacterItemLv1.Count);
+            CharacterItem selectedCharacterItem = lisCharacterItemLv1[randomCharacterIndex];
+
+            GameObject selectedCharacterPrefab = selectedCharacterItem.characterPrefab;
+            if (selectedCharacterPrefab == null)
+            {
+                return;
+            }
+            GameObject newCharacter = Instantiate(selectedCharacterPrefab, targetCell.transform);
+            newCharacter.transform.localPosition = new Vector3(0f, -45f, 0f);
+            Character character = newCharacter.GetComponent<Character>();
+            if (character == null)
+            {
+                Debug.LogError("character null");
+                return;
+            }
+            character.SetupCharacter(selectedCharacterItem);
+
+
+        }
 
     }
 

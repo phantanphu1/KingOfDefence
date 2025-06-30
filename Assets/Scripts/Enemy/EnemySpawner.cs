@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     public List<Enemy> lsEnemy = new List<Enemy>();
     // Trong EnemySpawner.cs
     [SerializeField] ObjectPool objectPool;
+    [SerializeField] EnemyItemScriptableObject enemyItemConfig;
 
     void Start()
     {
@@ -29,6 +30,8 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnNewEnemy()
     {
+        int randomEnemyIndex = Random.Range(0, enemyItemConfig.lsEnemyItem.Count);
+        EnemyItem selectedEnemyItem = enemyItemConfig.lsEnemyItem[randomEnemyIndex];
         if (enemyPrefab != null && spawnPoint != null && globalPatrolPathParent != null && objectPool != null)
         {
             // Lấy GameObject enemy từ Object Pool
@@ -41,7 +44,6 @@ public class EnemySpawner : MonoBehaviour
 
             // Lấy script Enemy từ GameObject
             Enemy enemyScript = enemyGO.GetComponent<Enemy>();
-
             if (enemyScript != null)
             {
                 // Thêm script Enemy vào danh sách quản lý của Spawner
@@ -49,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
 
                 // Gán patrolPathParent cho script Enemy của enemy mới
                 enemyScript.patrolPathParent = globalPatrolPathParent;
-
+                enemyScript.SetUpMovement(selectedEnemyItem.movementSpeed);
                 // Reset quãng đường di chuyển của enemy khi nó được sinh ra/tái sử dụng
                 enemyScript.ResetData();
             }

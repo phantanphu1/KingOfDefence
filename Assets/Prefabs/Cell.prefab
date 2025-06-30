@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 5236693931852438022}
   m_Layer: 5
   m_Name: Cell
-  m_TagString: Untagged
+  m_TagString: Cell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6414183767058854698
 RectTransform:
   m_ObjectHideFlags: 0

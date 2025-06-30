@@ -13,13 +13,37 @@ public enum EnemyType
     None = 0,
     Normal = 1,
 }
+public enum HeroType
+{
+    None = 0,
+    Archer = 1,
+    Poisoner = 2,
+    FireMage = 3,
+    LightningMage = 4,
+    ColdMage = 5,
+
+}
+public enum HeroRarity
+{
+    None = 0,
+    CommonCard = 1,
+    RareCard = 2,
+    EpicCard = 3,
+    LegendaryCard = 4,
+}
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefabs;
     [SerializeField] GameObject enemyPrefabs;
     private Dictionary<BulletType, List<GameObject>> bulletPools = new Dictionary<BulletType, List<GameObject>>();
     private Dictionary<EnemyType, List<GameObject>> enemyPools = new Dictionary<EnemyType, List<GameObject>>();
-
+    // private Dictionary<HeroType, List<GameObject>> CharacterpePools = new Dictionary<HeroType, List<GameObject>>();
+    // private TableObjectManage tableObjectManage;
+    // List<CharacterItem> lsCharacterItemLV1 = new List<CharacterItem>();
+    private void Awake()
+    {
+        // tableObjectManage = TableObjectManage.Instance;
+    }
     public GameObject GetBulletByType(BulletType bulletType)
     {
         if (bulletType == BulletType.None)
@@ -43,8 +67,6 @@ public class ObjectPool : MonoBehaviour
         {
             return InstantiateBulletByType(bulletType);
         }
-
-
     }
     private GameObject InstantiateBulletByType(BulletType bulletType)
     {
@@ -110,4 +132,29 @@ public class ObjectPool : MonoBehaviour
     {
         return Instantiate(enemyPrefabs);
     }
+    // private void GetCharacterItemLv1()
+    // {
+    //     foreach (var item in tableObjectManage.characterConfig.lsCharacterItem)
+    //     {
+    //         if (item.baseLevel == 1)
+    //         {
+    //             lsCharacterItemLV1.Add(item);
+    //         }
+    //     }
+
+    // }
+    // private GameObject InstantiateNormalCharacter()
+    // {
+    //     int randomCharacterIndex = UnityEngine.Random.Range(0, lsCharacterItemLV1.Count);
+    //     CharacterItem selectedCharacterItem = lsCharacterItemLV1[randomCharacterIndex];
+    //     GameObject selectedCharacterPrefab = selectedCharacterItem.characterPrefab;
+    //     if (selectedCharacterPrefab == null)
+    //     {
+    //         return;
+    //     }
+    //     GameObject newCharacter = Instantiate(selectedCharacterPrefab, targetCell.transform);
+    //     newCharacter.transform.localPosition = Vector3.zero;
+
+    //     return Instantiate();
+    // }
 }

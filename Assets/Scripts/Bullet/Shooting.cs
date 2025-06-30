@@ -12,7 +12,7 @@ public class Shooting : MonoBehaviour
     {
         enemySpawner = FindObjectOfType<EnemySpawner>();
 
-        InvokeRepeating("ShootBullet", 1f, 2f);
+        InvokeRepeating("ShootBullet", 1f, 10f);
     }
 
     public void ShootBullet()
