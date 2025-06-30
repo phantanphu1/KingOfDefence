@@ -118,10 +118,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamge(float damge)
     {
-        Debug.Log($"currentHealth1:{currentHealth}");
+        // Debug.Log($"currentHealth1:{currentHealth}");
 
         currentHealth -= damge;
-        Debug.Log($"currentHealth:{currentHealth}");
+        // Debug.Log($"currentHealth:{currentHealth}");
 
         if (currentHealth <= 0)
         {
@@ -146,5 +146,10 @@ public class Enemy : MonoBehaviour
     public float GetTotalDistanceTraveled()
     {
         return _totalDistanceMoved;
+    }
+
+    public void SetUpMovement(float speed)
+    {
+        moveSpeed = speed;
     }
 }

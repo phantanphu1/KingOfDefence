@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad61cf40a1c014befbcb5f63076078a4, type: 3}
+  m_Name: CharacterItemConfig
+  m_EditorClassIdentifier: 
+  lsCharacterItem:
+  - characterPrefab: {fileID: 5513151952096685981, guid: e5cc2bf596d484a08aeef24ad26523fc, type: 3}
+    Damage: 29
+    baseLevel: 1
+    heroType: 1
+    heroRarity: 1
+    SpeedAttack: 1
+    MaxLeve: 3
+  - characterPrefab: {fileID: 2921778824339535393, guid: a516d7b5ced464d94b4ada1d9ba86a75, type: 3}
+    Damage: 13
+    baseLevel: 1
+    heroType: 2
+    heroRarity: 1
+    SpeedAttack: 1.5
+    MaxLeve: 3
+  - characterPrefab: {fileID: 2695321013679401427, guid: c6962176e400a4fc8a35a8174b9bafb3, type: 3}
+    Damage: 27
+    baseLevel: 1
+    heroType: 3
+    heroRarity: 1
+    SpeedAttack: 0
+    MaxLeve: 3
+  - characterPrefab: {fileID: 6544270315955049370, guid: acd28531e2a214d9183169094af798c8, type: 3}
+    Damage: 26
+    baseLevel: 1
+    heroType: 4
+    heroRarity: 1
+    SpeedAttack: 0.8
+    MaxLeve: 3
+  - characterPrefab: {fileID: 2921778824339535393, guid: a516d7b5ced464d94b4ada1d9ba86a75, type: 3}
+    Damage: 26
+    baseLevel: 2
+    heroType: 2
+    heroRarity: 1
+    SpeedAttack: 0.7
+    MaxLeve: 3
+  - characterPrefab: {fileID: 521507453362867627, guid: 499a73d935199418bbca286683251d78, type: 3}
+    Damage: 32
+    baseLevel: 2
+    heroType: 4
+    heroRarity: 1
+    SpeedAttack: 1.8
+    MaxLeve: 3
