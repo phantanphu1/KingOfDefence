@@ -12,6 +12,7 @@ public class CharacterItemScriptableObject : ScriptableObject
 public class CharacterItem
 {
     public GameObject characterPrefab;
+    public Sprite ImageCharacter;
 
     public int Damage;
 
@@ -22,4 +23,16 @@ public class CharacterItem
     public HeroRarity heroRarity;
     public float SpeedAttack;
     public int MaxLeve;
+    public float Mana;
+    public CharacterItem(CharacterItem item)
+    {
+        this.ImageCharacter = item.ImageCharacter;
+        this.Damage = item.Damage;
+        this.baseLevel = item.baseLevel;
+        this.heroType = item.heroType;
+        this.heroRarity = item.heroRarity;
+        this.SpeedAttack = item.SpeedAttack;
+        this.MaxLeve = item.MaxLeve;
+        this.Mana = item.Mana;
+    }
 }

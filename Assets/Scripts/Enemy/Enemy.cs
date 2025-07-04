@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
     private float _totalDistanceMoved = 0f; // Tổng quãng đường đã đi
 
     public bool IsAtShootingWaypoint { get; private set; } = true;
+    private const int mana = 12;
+    private Character character;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("ShootingZone"))
@@ -133,6 +135,8 @@ public class Enemy : MonoBehaviour
     {
         ResetData();
         this.gameObject.SetActive(false);
+        CharacterManager.Instance.Mana(mana);
+
 
     }
     public void ResetData()

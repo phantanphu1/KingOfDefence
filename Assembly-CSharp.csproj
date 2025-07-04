@@ -39,6 +39,7 @@
      <Compile Include="Assets/Scripts/Enemy/EnemyItemScriptableObject.cs" />
      <Compile Include="Assets/Scripts/Cell.cs" />
      <Compile Include="Assets/Scripts/Character/CharacterItemScriptableObject.cs" />
+     <Compile Include="Assets/Scripts/TableObjectManager/TableObjectManage.cs" />
      <Compile Include="Assets/Scripts/Bullet/BulletCollision.cs" />
      <Compile Include="Assets/Scripts/Bullet/ObjectPool.cs" />
      <Compile Include="Assets/Scripts/Health/HealthBar.cs" />
@@ -49,7 +50,8 @@
      <Compile Include="Assets/Scripts/Button/GameButtonHandler.cs" />
      <Compile Include="Assets/Scripts/Board.cs" />
      <Compile Include="Assets/Scripts/Character/Character.cs" />
-     <Compile Include="Assets/Scripts/TableObjectManager/TableObjectManage.cs" />
+     <Compile Include="Assets/Scripts/Character/CharacterManager.cs" />
+     <Compile Include="Assets/Scripts/Character/ItemUiCharacter.cs" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />

@@ -114,9 +114,12 @@ public class Board : MonoBehaviour
             }
             character.SetupCharacter(selectedCharacterItem);
 
-
         }
 
+    }
+    public void AddCharacter(CharacterItem character)
+    {
+        lisCharacterItemLv1.Add(character);
     }
 
 }
