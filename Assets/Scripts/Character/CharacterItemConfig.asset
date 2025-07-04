@@ -14,44 +14,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lsCharacterItem:
   - characterPrefab: {fileID: 5513151952096685981, guid: e5cc2bf596d484a08aeef24ad26523fc, type: 3}
+    ImageCharacter: {fileID: -6083234708928302191, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
     Damage: 29
     baseLevel: 1
     heroType: 1
     heroRarity: 1
     SpeedAttack: 1
     MaxLeve: 3
+    Mana: 100
   - characterPrefab: {fileID: 2921778824339535393, guid: a516d7b5ced464d94b4ada1d9ba86a75, type: 3}
+    ImageCharacter: {fileID: -6589015492417651090, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
     Damage: 13
     baseLevel: 1
     heroType: 2
     heroRarity: 1
     SpeedAttack: 1.5
     MaxLeve: 3
+    Mana: 120
   - characterPrefab: {fileID: 2695321013679401427, guid: c6962176e400a4fc8a35a8174b9bafb3, type: 3}
+    ImageCharacter: {fileID: -3838838520840280173, guid: 8f7a60065e3984c489b9c4d41bc3dc4e, type: 3}
     Damage: 27
     baseLevel: 1
     heroType: 3
     heroRarity: 1
     SpeedAttack: 0
     MaxLeve: 3
+    Mana: 100
   - characterPrefab: {fileID: 6544270315955049370, guid: acd28531e2a214d9183169094af798c8, type: 3}
+    ImageCharacter: {fileID: 4379567890289793011, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
     Damage: 26
     baseLevel: 1
     heroType: 4
     heroRarity: 1
     SpeedAttack: 0.8
     MaxLeve: 3
+    Mana: 115
   - characterPrefab: {fileID: 2921778824339535393, guid: a516d7b5ced464d94b4ada1d9ba86a75, type: 3}
+    ImageCharacter: {fileID: 0}
     Damage: 26
     baseLevel: 2
     heroType: 2
     heroRarity: 1
     SpeedAttack: 0.7
     MaxLeve: 3
+    Mana: 150
   - characterPrefab: {fileID: 521507453362867627, guid: 499a73d935199418bbca286683251d78, type: 3}
+    ImageCharacter: {fileID: 0}
     Damage: 32
     baseLevel: 2
     heroType: 4
     heroRarity: 1
     SpeedAttack: 1.8
     MaxLeve: 3
+    Mana: 150
+  - characterPrefab: {fileID: 2921778824339535393, guid: a516d7b5ced464d94b4ada1d9ba86a75, type: 3}
+    ImageCharacter: {fileID: 0}
+    Damage: 32
+    baseLevel: 3
+    heroType: 2
+    heroRarity: 1
+    SpeedAttack: 1.8
+    MaxLeve: 3
+    Mana: 150
