@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    // public static Character Instance;
     private Board board;
     private TableObjectManage tableObjectManage;
     private CharacterItem characterItem;
@@ -16,6 +12,7 @@ public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
     private Cell currentCell;
+
     private void Awake()
     {
         tableObjectManage = TableObjectManage.Instance;
@@ -35,8 +32,6 @@ public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     }
     public bool TryMergeCharacter(Character targetCharacter)
     {
-        // Debug.Log($"vao:{targetCharacter.characterItem.heroType}");
-        // Debug.Log($"this.TargetCharacter:{this.characterItem.heroType}");
         var targetCharacterItem = targetCharacter.characterItem;
         if (targetCharacter == null)
         {
@@ -49,20 +44,17 @@ public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             return false;
         }
         int sumCharacter = this.characterItem.baseLevel + targetCharacterItem.baseLevel;
-        Debug.LogWarning($"sumCharacter:{sumCharacter}, this.characterItem.baseLevel:{this.characterItem.baseLevel},targetCharacterItem.baseLevel:{targetCharacterItem.baseLevel}");
         if (sumCharacter > this.characterItem.MaxLeve || sumCharacter > targetCharacterItem.MaxLeve)
         {
             Debug.Log("nhan vat da maxLevel");
             return false;
         }
 
-        // Debug.Log($"targetCharacterItem.heroType:{targetCharacterItem.heroType},targetCharacterItem.baseLevel:{targetCharacterItem.baseLevel} ");
         int level = targetCharacterItem.baseLevel;
         int levelDrag = this.characterItem.baseLevel;
         int sum = level + levelDrag;
         foreach (var characterUpgrade in tableObjectManage.characterConfig.lsCharacterItem)
         {
-            // Debug.Log($"characterUpgrade.heroType:{characterUpgrade.heroType},characterUpgrade.baseLevel:{characterUpgrade.baseLevel} ");
             if (characterUpgrade.heroType == targetCharacterItem.heroType && characterUpgrade.baseLevel == sum)
             {
                 OnUpgradeCharacter(characterUpgrade, targetCharacter.currentCell);
@@ -143,7 +135,6 @@ public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
         if (this.characterItem == null)
         {
-            // Debug.Log($"doi tuong {this.name} k co");
             rectTransform.anchoredPosition = originalPosition;
             return;
         }
@@ -152,7 +143,6 @@ public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         foreach (GameObject hoveredObject in eventData.hovered)
         {
-            // Debug.Log($"hoveredObject.name {hoveredObject.name}");
             if (hoveredObject.CompareTag("Cell"))
             {
 
@@ -164,19 +154,14 @@ public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                     break;
                 }
             }
-
         }
 
         bool droppedValidly = false;
         if (targetCharacter != null)
         {
-            // Debug.Log($"targetCharacter.heroType1:{targetCharacter}");
-
             if (TryMergeCharacter(targetCharacter))
             {
-                // Debug.Log("trymergerChracter");
                 droppedValidly = true;
-
             }
         }
         else if (targetCell != null)
@@ -187,18 +172,20 @@ public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             targetCell.IsEmpty = false;
             targetCell.CharacterOnCell = this;
             droppedValidly = true;
-            // Debug.Log($"Nhân vật đã di chuyển đến ô mới: [{targetCell.row},{targetCell.col}]");
-
         }
         if (!droppedValidly)
         {
             Debug.Log("K co vt phu hop:");
             rectTransform.anchoredPosition = originalPosition;
         }
-
     }
     public void SetupCharacter(CharacterItem characterItem)
     {
         this.characterItem = characterItem;
     }
+    public void chadf(CharacterItem chaf)
+    {
+        characterItem = chaf;
+    }
+
 }

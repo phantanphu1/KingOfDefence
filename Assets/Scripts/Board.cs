@@ -14,7 +14,6 @@ public class Board : MonoBehaviour
     private const int numRows = 3;
     private const int numCols = 5;
     private TableObjectManage tableObjectManage;
-    List<CharacterItem> lisCharacterItemLv1 = new List<CharacterItem>();
 
     private void Awake()
     {
@@ -89,15 +88,8 @@ public class Board : MonoBehaviour
                 return;
             }
             // láy random character trong list
-            foreach (var randomCharacterlevel1 in tableObjectManage.characterConfig.lsCharacterItem)
-            {
-                if (randomCharacterlevel1.baseLevel == 1)
-                {
-                    lisCharacterItemLv1.Add(randomCharacterlevel1);
-                }
-            }
-            int randomCharacterIndex = UnityEngine.Random.Range(0, lisCharacterItemLv1.Count);
-            CharacterItem selectedCharacterItem = lisCharacterItemLv1[randomCharacterIndex];
+            int randomCharacterIndex = UnityEngine.Random.Range(0, CharacterManager.Instance._lsCharacterLv1.Count);
+            CharacterItem selectedCharacterItem = CharacterManager.Instance._lsCharacterLv1[randomCharacterIndex];
 
             GameObject selectedCharacterPrefab = selectedCharacterItem.characterPrefab;
             if (selectedCharacterPrefab == null)
@@ -107,6 +99,7 @@ public class Board : MonoBehaviour
             GameObject newCharacter = Instantiate(selectedCharacterPrefab, targetCell.transform);
             newCharacter.transform.localPosition = new Vector3(0f, -45f, 0f);
             Character character = newCharacter.GetComponent<Character>();
+            // Debug.LogWarning($"add: {character.name}");
             if (character == null)
             {
                 Debug.LogError("character null");
@@ -117,9 +110,4 @@ public class Board : MonoBehaviour
         }
 
     }
-    public void AddCharacter(CharacterItem character)
-    {
-        lisCharacterItemLv1.Add(character);
-    }
-
 }

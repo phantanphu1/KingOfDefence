@@ -14,7 +14,6 @@ public class ItemUiCharacter : MonoBehaviour
     public CanvasGroup canvasGroup;
     public Button buttonCharacter;
     private float _mana;
-    private Board _board;
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -25,7 +24,7 @@ public class ItemUiCharacter : MonoBehaviour
         _image.sprite = characterItem.ImageCharacter;
         _textLevel.text = "LV: " + characterItem.baseLevel.ToString();
         _manaText.text = characterItem.Mana.ToString();
-
+        // Debug.Log($"SetItem: {JsonUtility.ToJson(characterItem)}");
     }
     private void Update()
     {
@@ -44,7 +43,7 @@ public class ItemUiCharacter : MonoBehaviour
             Debug.LogWarning("nhan vat da max level");
         }
     }
-    private void UpgradeCharacter()
+    public void UpgradeCharacter()
     {
         int nextLevel = _currentItemData.baseLevel + 1;
         CharacterItem newCharacterItem = null;
@@ -59,13 +58,13 @@ public class ItemUiCharacter : MonoBehaviour
         }
         if (newCharacterItem != null)
         {
+            CharacterManager.Instance.TakeMama(_currentItemData.Mana);
             CharacterManager.Instance.RemoveCharacter(_currentItemData);
             CharacterManager.Instance.TakeMama(_currentItemData.Mana);
-            CharacterItem newCharacter = new CharacterItem(newCharacterItem);
-            CharacterManager.Instance.AddCharacter(newCharacter);
-            _board.GetComponent<Board>().AddCharacter(newCharacter);
-            SetItem(newCharacter);
-            _currentItemData = newCharacter;
+            CharacterManager.Instance.AddCharacter(newCharacterItem);
+            SetItem(newCharacterItem);
+            // CharacterManager.Instance.UpgradeAllCharacterLevel(newCharacterItem);
+            _currentItemData = newCharacterItem;
         }
         else
         {
@@ -85,4 +84,5 @@ public class ItemUiCharacter : MonoBehaviour
             buttonCharacter.interactable = false;
         }
     }
+
 }
