@@ -9,12 +9,14 @@ public class CharacterManager : MonoBehaviour
     public static CharacterManager Instance;
     private float _mana = 110;
     [SerializeField] private TextMeshProUGUI _manaText;
-    List<CharacterItem> _lsCharacterLv1 = new List<CharacterItem>();
+    public List<CharacterItem> _lsCharacterLv1 { get; private set; } = new List<CharacterItem>();
     private TableObjectManage tableObjectManage;
     private ItemUiCharacter itemUiCharacter;
     [SerializeField] private Transform itemHolder;
     [SerializeField] private GameObject itemPrefabs;
     private CharacterItem characterItem;
+    [SerializeField] private Transform itemBoard;
+
 
     private void Awake()
     {
@@ -86,4 +88,20 @@ public class CharacterManager : MonoBehaviour
     {
         _lsCharacterLv1.Add(characterItem);
     }
+    // public void UpgradeAllCharacterLevel(CharacterItem cha)
+    // {
+    //     foreach (Transform child in itemBoard)
+    //     {
+    //         if (child.childCount > 0)
+    //         {
+    //             Transform chillTransform = child.GetChild(0);
+
+    //         }
+    //         else
+    //         {
+    //             // Debug.LogWarning("khong co");
+    //         }
+
+    //     }
+    // }
 }

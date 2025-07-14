@@ -26,6 +26,7 @@ public class CharacterItem
     public float Mana;
     public CharacterItem(CharacterItem item)
     {
+        this.characterPrefab = item.characterPrefab;
         this.ImageCharacter = item.ImageCharacter;
         this.Damage = item.Damage;
         this.baseLevel = item.baseLevel;

@@ -3868,6 +3868,7 @@ MonoBehaviour:
   _manaText: {fileID: 1199033310}
   itemHolder: {fileID: 1976855396}
   itemPrefabs: {fileID: 1599544287607036430, guid: 356d62e89c78e493cb6c2285e81abc0c, type: 3}
+  itemBoard: {fileID: 333778052}
 --- !u!1 &1571209111
 GameObject:
   m_ObjectHideFlags: 0

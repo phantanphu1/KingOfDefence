@@ -20,10 +20,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         tableObjectManage = TableObjectManage.Instance;
 
-    }
-    private void Start()
-    {
-        character = FindObjectOfType<Character>();
+
     }
     public void LoadGamePlay()
     {

@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lsCharacterItem:
   - characterPrefab: {fileID: 5513151952096685981, guid: e5cc2bf596d484a08aeef24ad26523fc, type: 3}
-    ImageCharacter: {fileID: -6083234708928302191, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
+    ImageCharacter: {fileID: -6083234708928302191, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
     Damage: 29
-    baseLevel: 1
+    baseLevel: 2
     heroType: 1
     heroRarity: 1
     SpeedAttack: 1
     MaxLeve: 3
-    Mana: 100
+    Mana: 150
   - characterPrefab: {fileID: 2921778824339535393, guid: a516d7b5ced464d94b4ada1d9ba86a75, type: 3}
     ImageCharacter: {fileID: -6589015492417651090, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
     Damage: 13
-    baseLevel: 1
+    baseLevel: 2
     heroType: 2
     heroRarity: 1
     SpeedAttack: 1.5
@@ -41,14 +41,14 @@ MonoBehaviour:
     MaxLeve: 3
     Mana: 100
   - characterPrefab: {fileID: 6544270315955049370, guid: acd28531e2a214d9183169094af798c8, type: 3}
-    ImageCharacter: {fileID: 4379567890289793011, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
-    Damage: 26
+    ImageCharacter: {fileID: 4379567890289793011, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
+    Damage: 32
     baseLevel: 1
     heroType: 4
     heroRarity: 1
-    SpeedAttack: 0.8
+    SpeedAttack: 1.8
     MaxLeve: 3
-    Mana: 115
+    Mana: 10
   - characterPrefab: {fileID: 2921778824339535393, guid: a516d7b5ced464d94b4ada1d9ba86a75, type: 3}
     ImageCharacter: {fileID: 0}
     Damage: 26
@@ -59,14 +59,14 @@ MonoBehaviour:
     MaxLeve: 3
     Mana: 150
   - characterPrefab: {fileID: 521507453362867627, guid: 499a73d935199418bbca286683251d78, type: 3}
-    ImageCharacter: {fileID: 0}
+    ImageCharacter: {fileID: 8596640243658272642, guid: 593a2dda4770b412596871994b05d84c, type: 3}
     Damage: 32
     baseLevel: 2
     heroType: 4
     heroRarity: 1
     SpeedAttack: 1.8
     MaxLeve: 3
-    Mana: 150
+    Mana: 10
   - characterPrefab: {fileID: 2921778824339535393, guid: a516d7b5ced464d94b4ada1d9ba86a75, type: 3}
     ImageCharacter: {fileID: 0}
     Damage: 32
