@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - ShootingZone
   - Cell
+  - bomb
   layers:
   - Default
   - TransparentFX
