@@ -63,6 +63,7 @@ public class ItemUiCharacter : MonoBehaviour
             CharacterManager.Instance.TakeMama(_currentItemData.Mana);
             CharacterManager.Instance.AddCharacter(newCharacterItem);
             SetItem(newCharacterItem);
+
             // CharacterManager.Instance.UpgradeAllCharacterLevel(newCharacterItem);
             _currentItemData = newCharacterItem;
         }

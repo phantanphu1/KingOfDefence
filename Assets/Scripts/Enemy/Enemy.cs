@@ -34,6 +34,12 @@ public class Enemy : MonoBehaviour
         {
             IsAtShootingWaypoint = false;
         }
+        if (other.gameObject.CompareTag("bomb"))
+        {
+            Debug.LogWarning("Vaof");
+            other.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
