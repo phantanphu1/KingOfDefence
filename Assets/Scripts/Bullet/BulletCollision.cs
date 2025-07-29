@@ -10,5 +10,10 @@ public class BulletCollision : MonoBehaviour
             other.GetComponent<Enemy>().TakeDamge(damge);
             this.gameObject.SetActive(false);
         }
+        if (other.CompareTag("EnemyAI"))
+        {
+            other.GetComponent<EnemyAI>().TakeDamge(damge);
+            this.gameObject.SetActive(false);
+        }
     }
 }

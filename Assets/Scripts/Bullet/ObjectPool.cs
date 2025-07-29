@@ -35,8 +35,10 @@ public class ObjectPool : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefabs;
     [SerializeField] GameObject enemyPrefabs;
+    [SerializeField] GameObject enemyAIPrefabs;
     private Dictionary<BulletType, List<GameObject>> bulletPools = new Dictionary<BulletType, List<GameObject>>();
     private Dictionary<EnemyType, List<GameObject>> enemyPools = new Dictionary<EnemyType, List<GameObject>>();
+    private Dictionary<EnemyType, List<GameObject>> enemyAIPools = new Dictionary<EnemyType, List<GameObject>>();
     // private Dictionary<HeroType, List<GameObject>> CharacterpePools = new Dictionary<HeroType, List<GameObject>>();
     // private TableObjectManage tableObjectManage;
     // List<CharacterItem> lsCharacterItemLV1 = new List<CharacterItem>();
@@ -131,6 +133,48 @@ public class ObjectPool : MonoBehaviour
     private GameObject InstantiateNormalEnemy()
     {
         return Instantiate(enemyPrefabs);
+    }
+
+    public GameObject GetEnemyAIByType(EnemyType enemyType)
+    {
+        if (enemyAIPools.ContainsKey(enemyType))
+        {
+
+            var lsEnemy = enemyAIPools[enemyType];
+            foreach (var item in lsEnemy)
+            {
+                if (!item.activeInHierarchy)
+                {
+                    return item;
+                }
+            }
+            return InstantiateEnemyAIByType(enemyType);
+        }
+        else
+        {
+            return InstantiateEnemyAIByType(enemyType);
+        }
+    }
+    private GameObject InstantiateEnemyAIByType(EnemyType enemyType)
+    {
+        var obj = InstantiateNormalEnemyAI();
+        if (enemyPools.ContainsKey(enemyType))
+        {
+            var lsEnemy = enemyPools[enemyType];
+            lsEnemy.Add(obj);
+        }
+        else
+        {
+            List<GameObject> lsEnemy = new List<GameObject>();
+            lsEnemy.Add(obj);
+            enemyPools.Add(enemyType, lsEnemy);
+        }
+        return obj;
+    }
+
+    private GameObject InstantiateNormalEnemyAI()
+    {
+        return Instantiate(enemyAIPrefabs);
     }
     // private void GetCharacterItemLv1()
     // {
