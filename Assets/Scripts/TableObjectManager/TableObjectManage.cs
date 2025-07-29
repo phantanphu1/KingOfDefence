@@ -7,6 +7,7 @@ public class TableObjectManage : MonoBehaviour
     public static TableObjectManage Instance;
 
     public CharacterItemScriptableObject characterConfig;
+    public PlayerItemScriptableObject playerAIConfig;
     public EnemyItemScriptableObject enemyConfig;
     private void Awake()
     {

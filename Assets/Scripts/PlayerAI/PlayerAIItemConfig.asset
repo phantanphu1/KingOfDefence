@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501f0978e191d472a8a7855020653251, type: 3}
+  m_Name: PlayerAIItemConfig
+  m_EditorClassIdentifier: 
+  lsPlayerAIItem:
+  - playerAIPrefab: {fileID: 4004559296198701579, guid: 18129ddbc88b346fd9ad89fc7009b1ad, type: 3}
+    ImagePlayerAI: {fileID: -6083234708928302191, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
+    Damage: 12
+    baseLevel: 1
+    heroType: 2
+    heroRarity: 1
+    SpeedAttack: 20
+    MaxLeve: 3
+    Mana: 20
+  - playerAIPrefab: {fileID: 521507453362867627, guid: 499a73d935199418bbca286683251d78, type: 3}
+    ImagePlayerAI: {fileID: -7642239419928554605, guid: 593a2dda4770b412596871994b05d84c, type: 3}
+    Damage: 12
+    baseLevel: 2
+    heroType: 2
+    heroRarity: 1
+    SpeedAttack: 20
+    MaxLeve: 3
+    Mana: 20

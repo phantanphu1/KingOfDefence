@@ -589,6 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterConfig: {fileID: 11400000, guid: 1daa366bbcc3c47289b0257aecc95260, type: 2}
+  playerAIConfig: {fileID: 11400000, guid: eaf1f0f0a08e64016bf48913e7726cdf, type: 2}
   enemyConfig: {fileID: 11400000, guid: b704fe652b81041c88a273046f9ede3f, type: 2}
 --- !u!4 &191702380
 Transform:

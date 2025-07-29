@@ -8,6 +8,7 @@ TagManager:
   - ShootingZone
   - Cell
   - bomb
+  - EnemyAI
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,7 @@ MonoBehaviour:
   - characterPrefab: {fileID: 5513151952096685981, guid: e5cc2bf596d484a08aeef24ad26523fc, type: 3}
     ImageCharacter: {fileID: -6083234708928302191, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
     Damage: 29
-    baseLevel: 2
+    baseLevel: 1
     heroType: 1
     heroRarity: 1
     SpeedAttack: 1
@@ -25,7 +25,7 @@ MonoBehaviour:
   - characterPrefab: {fileID: 2921778824339535393, guid: a516d7b5ced464d94b4ada1d9ba86a75, type: 3}
     ImageCharacter: {fileID: -6589015492417651090, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
     Damage: 13
-    baseLevel: 2
+    baseLevel: 1
     heroType: 2
     heroRarity: 1
     SpeedAttack: 1.5

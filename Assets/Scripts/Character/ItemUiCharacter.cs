@@ -58,7 +58,6 @@ public class ItemUiCharacter : MonoBehaviour
         }
         if (newCharacterItem != null)
         {
-            CharacterManager.Instance.TakeMama(_currentItemData.Mana);
             CharacterManager.Instance.RemoveCharacter(_currentItemData);
             CharacterManager.Instance.TakeMama(_currentItemData.Mana);
             CharacterManager.Instance.AddCharacter(newCharacterItem);
