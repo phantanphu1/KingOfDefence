@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public Transform patrolPathParent; // Tham chiếu đến GameObject cha chứa các waypoint
 
     [Tooltip("Tốc độ di chuyển của enemy.")]
-    public float moveSpeed = 3f;
+    public float moveSpeed = 5f;
 
     [Tooltip("Khoảng cách tối thiểu để coi là đã đến điểm waypoint.")]
     public float arrivalThreshold = 0.1f;
@@ -25,33 +25,33 @@ public class Enemy : MonoBehaviour
     private Vector3 _previousPosition; // Vị trí ở frame trước
     private float _totalDistanceMoved = 0f; // Tổng quãng đường đã đi
 
-    public bool IsAtShootingWaypoint { get; private set; } = true;
+    public bool IsAtShootingWaypoint { get; private set; } = false;
     private const int mana = 12;
     private Character character;
-    private void OnTriggerEnter2D(Collider2D other)
+    private float duration = 0.05f;
+    private float speedBoost = 3f;
+    private float baseMoveSpeed;
+    private Rigidbody2D rigidbody2D;
+    private Collider2D collider2D;
+
+    private void OnEnable()
     {
-        if (other.CompareTag("ShootingZone"))
-        {
-            IsAtShootingWaypoint = false;
-        }
-        if (other.gameObject.CompareTag("bomb"))
-        {
-            Debug.LogWarning("Vaof");
-            other.gameObject.SetActive(false);
-            this.gameObject.SetActive(false);
-        }
+        baseMoveSpeed = moveSpeed;
+        baseMoveSpeed += speedBoost;
+        StartCoroutine(SetTrue());
+        StartCoroutine(ReturnSpeadEnemy(duration));
+    }
+    private void OnDisable()
+    {
+        StopCoroutine(SetTrue());
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("ShootingZone"))
-        {
-            IsAtShootingWaypoint = true;
-        }
-    }
     void Start()
     {
+
         currentHealth = maxHealth;
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        collider2D = GetComponent<Collider2D>();
         // Lấy tất cả các con của patrolPathParent và thêm chúng vào danh sách waypoint
         if (patrolPathParent != null)
         {
@@ -71,17 +71,59 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void Update()
+    // void Update()
+    // {
+    //     MoveEnemy();
+    // }
+    void FixedUpdate()
     {
+        if (waypoints.Count == 0) return;
 
+        // Lấy vị trí mục tiêu
+        Vector2 targetPosition = waypoints[currentWaypointIndex].position;
+        // Tính toán hướng di chuyển
+        // Debug.Log($"currentWaypointIndex:{currentWaypointIndex}");
+        Vector2 direction = (targetPosition - rigidbody2D.position).normalized;
+
+        // Gán vận tốc cho Rigidbody2D
+        rigidbody2D.velocity = direction * baseMoveSpeed;
+
+        // Cập nhật tổng khoảng cách đã di chuyển
+        float distanceThisFrame = Vector2.Distance(rigidbody2D.position, _previousPosition);
+        _totalDistanceMoved += distanceThisFrame;
+        _previousPosition = rigidbody2D.position;
+
+        // Kiểm tra khoảng cách để chuyển waypoint
+        if (Vector2.Distance(rigidbody2D.position, targetPosition) < arrivalThreshold)
+        {
+            currentWaypointIndex++;
+            if (currentWaypointIndex >= waypoints.Count)
+            {
+                currentWaypointIndex = 0;
+            }
+        }
+    }
+    IEnumerator SetTrue()
+    {
+        yield return new WaitForSeconds(1.5f);
+        IsAtShootingWaypoint = true;
+    }
+    IEnumerator ReturnSpeadEnemy(float time)
+    {
+        yield return new WaitForSeconds(time);
+        baseMoveSpeed = moveSpeed;
+    }
+    private void MoveEnemy()
+    {
         if (waypoints.Count == 0) return; // Bảo vệ khỏi lỗi nếu không có waypoint
 
         float distanceThisFrame = Vector3.Distance(transform.position, _previousPosition);
         _totalDistanceMoved += distanceThisFrame;
+
         _previousPosition = transform.position;
 
         Vector3 targetPosition = waypoints[currentWaypointIndex].position;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, baseMoveSpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, targetPosition) < arrivalThreshold)
         {
@@ -93,7 +135,26 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    // private void MoveEnemy()
+    // {
+    //     if (waypoints.Count == 0) return;
 
+    //     Vector3 targetPosition = waypoints[currentWaypointIndex].position;
+
+    //     // Di chuyển bằng Rigidbody.MovePosition() thay vì transform.position
+    //     Vector3 newPosition = Vector3.MoveTowards(rigidbody2D.position, targetPosition, baseMoveSpeed * Time.fixedDeltaTime);
+    //     rigidbody2D.MovePosition(newPosition);
+
+    //     // Kiểm tra khoảng cách
+    //     if (Vector3.Distance(rigidbody2D.position, targetPosition) < arrivalThreshold)
+    //     {
+    //         currentWaypointIndex++;
+    //         if (currentWaypointIndex >= waypoints.Count)
+    //         {
+    //             currentWaypointIndex = 0;
+    //         }
+    //     }
+    // }
 
     void OnDrawGizmos()
     {
@@ -126,11 +187,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamge(float damge)
     {
-        // Debug.Log($"currentHealth1:{currentHealth}");
-
         currentHealth -= damge;
-        // Debug.Log($"currentHealth:{currentHealth}");
-
         if (currentHealth <= 0)
         {
             Die();
@@ -140,9 +197,9 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         ResetData();
-        this.gameObject.SetActive(false);
         CharacterManager.Instance.Mana(mana);
-
+        IsAtShootingWaypoint = false;
+        this.gameObject.SetActive(false);
 
     }
     public void ResetData()
@@ -157,9 +214,38 @@ public class Enemy : MonoBehaviour
     {
         return _totalDistanceMoved;
     }
+    public float GetWaypointIndex()
+    {
+        Debug.Log($"currentWaypointIndex:{currentWaypointIndex}");
+        return currentWaypointIndex;
+    }
 
     public void SetUpMovement(float speed)
     {
         moveSpeed = speed;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("bomb"))
+        {
+            Debug.Log("Va cham co ");
+
+            collider2D.isTrigger = false;
+            rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX |
+                                   RigidbodyConstraints2D.FreezePositionY |
+                                   RigidbodyConstraints2D.FreezeRotation;
+            StartCoroutine(ActiveTrisgger());
+        }
+        if (other.CompareTag("EndGame"))
+        {
+            this.gameObject.SetActive(false);
+            CharacterManager.Instance.TakeHealth(1);
+        }
+    }
+    IEnumerator ActiveTrisgger()
+    {
+        yield return new WaitForSeconds(4f);
+        collider2D.isTrigger = true;
+        rigidbody2D.constraints = RigidbodyConstraints2D.None;
     }
 }

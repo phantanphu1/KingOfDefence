@@ -196,6 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefabs: {fileID: 890357636458163292, guid: 7ca848a0a0fe34ab890c38e4122048b9, type: 3}
   enemyPrefabs: {fileID: 5464233164227879849, guid: a98d4487cc91247ef81b216cfd22afba, type: 3}
+  enemyAIPrefabs: {fileID: 0}
 --- !u!114 &6872041391459830067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2921778824339535393}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02ba1e236c9c2419cb7f5ac640d0b96a, type: 3}
   m_Name: 
@@ -224,6 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
+  firePoint: {fileID: 2921778824339535392}
+  objectPool: {fileID: -5322389141256384272}
 --- !u!225 &2406061241236121002
 CanvasGroup:
   m_ObjectHideFlags: 0

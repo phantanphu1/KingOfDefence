@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : SingleTonManager<EnemySpawner>
 {
     [Header("Spawn Settings")]
     public Enemy enemyPrefab;
@@ -12,24 +12,33 @@ public class EnemySpawner : MonoBehaviour
     [Tooltip("Kéo GameObject chứa script WaypointPath (hoặc parent của các waypoint) vào đây.")]
     public Transform globalPatrolPathParent;
 
-    public float initialSpawnDelay = 0.5f;
-    public float spawnRepeatRate = 1f;
     public List<Enemy> lsEnemy = new List<Enemy>();
-    // Trong EnemySpawner.cs
     [SerializeField] ObjectPool objectPool;
     [SerializeField] EnemyItemScriptableObject enemyItemConfig;
+    private float currentTime = 2f;
+    private Animator animator;
 
     void Start()
     {
-        InvokeRepeating("SpawnNewEnemy", initialSpawnDelay, spawnRepeatRate);
+        animator = GetComponent<Animator>();
+        // SpawnNewEnemy();
+
     }
     void Update()
     {
+        currentTime += Time.deltaTime;
+        float random = UnityEngine.Random.Range(2, 5);
+        if (currentTime >= random)
+        {
+            SpawnNewEnemy();
+            currentTime = 0;
+        }
         GetFarthestEnemy();
     }
 
     void SpawnNewEnemy()
     {
+        // animator.SetTrigger("SpwanEnemy");
         int randomEnemyIndex = Random.Range(0, enemyItemConfig.lsEnemyItem.Count);
         EnemyItem selectedEnemyItem = enemyItemConfig.lsEnemyItem[randomEnemyIndex];
         if (enemyPrefab != null && spawnPoint != null && globalPatrolPathParent != null && objectPool != null)
@@ -76,7 +85,7 @@ public class EnemySpawner : MonoBehaviour
         foreach (var enemyGO in lsEnemy)
         {
 
-            if (enemyGO != null)
+            if (enemyGO != null && enemyGO.gameObject.activeInHierarchy)
             {
                 float currentDistance = enemyGO.GetTotalDistanceTraveled();
                 if (currentDistance > maxDistance)
@@ -88,5 +97,17 @@ public class EnemySpawner : MonoBehaviour
         }
         return farthestEnemy;
     }
+    public float GetWaypointIndexForFarthestEnemy()
+    {
+        Enemy farthestEnemy = GetFarthestEnemy();
 
+        if (farthestEnemy != null)
+        {
+            return farthestEnemy.GetWaypointIndex();
+        }
+        else
+        {
+            return -1;
+        }
+    }
 }

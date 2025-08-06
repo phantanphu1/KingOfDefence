@@ -115,8 +115,6 @@ GameObject:
   - component: {fileID: 1964757540908448199}
   - component: {fileID: 4969610999352325202}
   - component: {fileID: 5606511974239021676}
-  - component: {fileID: 8816542129649673954}
-  - component: {fileID: 3036516777779201220}
   - component: {fileID: 3369579097784709210}
   - component: {fileID: -6204430154859998260}
   m_Layer: 5
@@ -191,7 +189,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5513151952096685981}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02ba1e236c9c2419cb7f5ac640d0b96a, type: 3}
   m_Name: 
@@ -213,54 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefabs: {fileID: 890357636458163292, guid: 7ca848a0a0fe34ab890c38e4122048b9, type: 3}
   enemyPrefabs: {fileID: 5464233164227879849, guid: a98d4487cc91247ef81b216cfd22afba, type: 3}
---- !u!114 &8816542129649673954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5513151952096685981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 5
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3369579097784709210}
-          m_TargetAssemblyTypeName: Character, Assembly-CSharp
-          m_MethodName: OnUpgradeCharacter
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 5513151952096685981}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 6
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
---- !u!114 &3036516777779201220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5513151952096685981}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
+  enemyAIPrefabs: {fileID: 0}
 --- !u!114 &3369579097784709210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentAfterDrag: {fileID: 0}
+  firePoint: {fileID: 1450737163766006961}
+  objectPool: {fileID: 5606511974239021676}
 --- !u!225 &-6204430154859998260
 CanvasGroup:
   m_ObjectHideFlags: 0

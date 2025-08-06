@@ -23,11 +23,11 @@ MonoBehaviour:
     id: 001
     enemyName: Enemy
     health: 100
-    movementSpeed: 0.7
+    movementSpeed: 0.6
     enemyType: 1
   - enemyPrefab: {fileID: 5464233164227879849, guid: a98d4487cc91247ef81b216cfd22afba, type: 3}
     id: 001
     enemyName: Enemy
     health: 100
-    movementSpeed: 0.8
+    movementSpeed: 0.7
     enemyType: 1

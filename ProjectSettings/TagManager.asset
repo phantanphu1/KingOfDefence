@@ -9,6 +9,7 @@ TagManager:
   - Cell
   - bomb
   - EnemyAI
+  - EndGame
   layers:
   - Default
   - TransparentFX

@@ -99,6 +99,7 @@ public class Board : MonoBehaviour
             GameObject newCharacter = Instantiate(selectedCharacterPrefab, targetCell.transform);
             newCharacter.transform.localPosition = new Vector3(0f, -45f, 0f);
             Character character = newCharacter.GetComponent<Character>();
+
             // Debug.LogWarning($"add: {character.name}");
             if (character == null)
             {

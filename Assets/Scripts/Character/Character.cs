@@ -12,6 +12,11 @@ public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
     private Cell currentCell;
+    [SerializeField] Transform firePoint;
+    [SerializeField] ObjectPool objectPool;
+    // private EnemySpawner enemySpawner;
+    private float bulletSpeed = 20f;
+    private float currentTime;
 
     private void Awake()
     {
@@ -29,6 +34,18 @@ public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        // enemySpawner = FindObjectOfType<EnemySpawner>();
+
+        // InvokeRepeating("ShootBullet", 1f, characterItem.SpeedAttack);
+    }
+    private void Update()
+    {
+        currentTime += Time.deltaTime;
+        if (currentTime >= 1)
+        {
+            ShootBullet();
+            currentTime = 0;
+        }
     }
     public bool TryMergeCharacter(Character targetCharacter)
     {
@@ -187,5 +204,26 @@ public class Character : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         characterItem = chaf;
     }
+    public float ReturnDamage()
+    {
+        return characterItem.Damage;
+    }
+    public void ShootBullet()
+    {
+        // Enemy farthestEnemy = enemySpawner.GetFarthestEnemy();
+        Enemy farthestEnemy = EnemySpawner.Instance.GetFarthestEnemy();
+        if (farthestEnemy != null && farthestEnemy.IsAtShootingWaypoint == true)
+        {
+            // Debug.Log($"farthestEnemy:{farthestEnemy.IsAtShootingWaypoint}");
+            Vector2 enemyPosition = farthestEnemy.transform.position;
+            GameObject bullet = objectPool.GetBulletByType(BulletType.Normal);
+            bullet.SetActive(true);
+            bullet.transform.position = firePoint.position;
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            Vector2 bulletPosition = firePoint.position;
+            Vector2 moveToEnemy = (enemyPosition - bulletPosition).normalized;
+            rb.velocity = moveToEnemy * bulletSpeed;
 
+        }
+    }
 }
